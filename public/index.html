@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Envoyer Salut</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .card {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
+    h1 { margin-bottom: 1.5rem; font-size: 1.5rem; color: #333; text-align: center; }
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+      margin-bottom: 0.75rem;
+      resize: vertical;
+    }
+    input[type="email"]:focus,
+    textarea:focus { border-color: #6c63ff; }
+    button {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button:hover { background: #574fd6; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+    #message {
+      margin-top: 1rem;
+      text-align: center;
+      font-size: 0.95rem;
+      min-height: 1.5rem;
+    }
+    .container {
+      display: flex;
+      gap: 2rem;
+      width: 100%;
+      max-width: 900px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .whatsapp-section {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 420px;
+    }
+    .whatsapp-section h2 {
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+      color: #25d366;
+      text-align: center;
+    }
+    .contact-list {
+      list-style: none;
+    }
+    .contact-item {
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: #f9f9f9;
+    }
+    .contact-item:hover {
+      background: #e8f5e9;
+      border-color: #25d366;
+    }
+    .contact-item.active {
+      background: #25d366;
+      color: white;
+      border-color: #25d366;
+    }
+    .message-display {
+      background: #f0f0f0;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      min-height: 100px;
+      display: none;
+      word-wrap: break-word;
+    }
+    .message-display.show {
+      display: block;
+    }
+    .message-header {
+      font-weight: bold;
+      margin-bottom: 0.75rem;
+      color: #25d366;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>📧 Envoyer un message</h1>
+      <input type="email" id="emailInput" placeholder="Entrez votre email..." />
+      <textarea id="messageInput" placeholder="Écrivez votre message..." rows="4"></textarea>
+      <button id="sendBtn" onclick="sendEmail()">Envoyer</button>
+      <p id="message"></p>
+    </div>
+
+    <div class="whatsapp-section">
+      <h2>💬 WhatsApp</h2>
+      <ul class="contact-list" id="contactList"></ul>
+      <div class="message-display" id="messageDisplay">
+        <div class="message-header" id="messageHeader"></div>
+        <div id="messageContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Messages WhatsApp locaux
+    const whatsappMessages = {
+      'Nolan': 'Yo ça va ? Comment t\'as trouvé le projet ?',
+      'Mael': 'C\'est cool ce truc franchement bravo !',
+      'Alex': 'T\'es libre ce we ?',
+      'Léa': 'J\'ai vu le site, ça marche bien 👍'
+    };
+
+    // Initialiser la liste des contacts
+    function initWhatsapp() {
+      const contactList = document.getElementById('contactList');
+      contactList.innerHTML = '';
+
+      Object.keys(whatsappMessages).forEach(name => {
+        const li = document.createElement('li');
+        li.className = 'contact-item';
+        li.textContent = name;
+        li.onclick = () => showMessage(name);
+        contactList.appendChild(li);
+      });
+    }
+
+    // Afficher le message quand on clique sur un contact
+    function showMessage(name) {
+      const messageDisplay = document.getElementById('messageDisplay');
+      const messageHeader = document.getElementById('messageHeader');
+      const messageContent = document.getElementById('messageContent');
+      const contactItems = document.querySelectorAll('.contact-item');
+
+      // Mettre à jour le style actif
+      contactItems.forEach(item => item.classList.remove('active'));
+      event.target.classList.add('active');
+
+      // Afficher le message
+      messageHeader.textContent = name;
+      messageContent.textContent = whatsappMessages[name];
+      messageDisplay.classList.add('show');
+    }
+
+    // Initialiser au chargement
+    document.addEventListener('DOMContentLoaded', initWhatsapp);
+
+    async function sendEmail() {
+      const email = document.getElementById('emailInput').value.trim();
+      const messageText = document.getElementById('messageInput').value.trim();
+      const msg = document.getElementById('message');
+      const btn = document.getElementById('sendBtn');
+
+      msg.textContent = '';
+
+      if (!email) {
+        msg.textContent = '❌ Veuillez entrer un email.';
+        msg.style.color = 'red';
+        return;
+      }
+
+      if (!messageText) {
+        msg.textContent = '❌ Veuillez écrire un message.';
+        msg.style.color = 'red';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Envoi en cours...';
+
+      const res = await fetch('/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, messageText })
+      });
+
+      const data = await res.json();
+      msg.textContent = data.message;
+      msg.style.color = data.success ? 'green' : 'red';
+
+      btn.disabled = false;
+      btn.textContent = 'Envoyer';
+    }
+
+    document.getElementById('emailInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('messageInput').focus();
+    });
+
+    document.getElementById('messageInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && e.ctrlKey) sendEmail();
+    });
+  </script>
+</body>
+</html>
