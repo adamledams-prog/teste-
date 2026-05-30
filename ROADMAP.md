@@ -1,4 +1,4 @@
-# 🚀 ROADMAP - Projet Email/WhatsApp
+# 🚀 ROADMAP - Projet WhatsApp Floating Ball
 
 ## ✅ Étapes Complétées
 
@@ -15,107 +15,59 @@
 
 ---
 
-## 🔄 Étapes En Cours
+## 🎯 Nouvel Objectif Principal
 
-### Phase 2 : Progressive Web App (PWA)
-- [ ] Créer `manifest.json` pour installer l'app sur l'écran d'accueil
-- [ ] Ajouter icône personnalisée (boule bleue ou autre)
-- [ ] Créer `service-worker.js` pour fonctionnement hors ligne
-- [ ] Tester sur téléphone (Android/iOS)
-- [ ] Boule flottante DANS l'app (en bas à gauche)
-  - [ ] Boule qui suit l'utilisateur en scrollant
-  - [ ] Menu au clic (Email, WhatsApp, Gemini, etc.)
-  - [ ] Design moderne et smooth
+**App Android Native - Boule Flottante WhatsApp** 🔵
+
+**Concept** :
+- 🔵 Boule bleue flottante par-dessus TOUTES les apps
+- Clique sur la boule → **Liste des contacts WhatsApp**
+- Clique sur un contact → **Ouvre WhatsApp** avec la conversation
+- C'est tout ! Simple et efficace.
 
 ---
 
-## 📋 À Faire Bientôt
+## 📋 À Faire
 
-### Phase 3 : Amélioration de la Section WhatsApp
-- [ ] Récupérer les vrais messages WhatsApp (si possible via API)
-- [ ] Ajouter timestamps des messages
-- [ ] Afficher le statut "lu/non lu"
-- [ ] Répondre directement depuis l'app
-- [ ] Historique des conversations
+### Phase 2 : App Android Native - WhatsApp Floating Ball
 
-### Phase 4 : Intégrations Supplémentaires
-- [ ] Gemini Chat (Google AI)
-  - [ ] Champ de texte pour poser des questions
-  - [ ] Réponses en temps réel
-  - [ ] Historique des conversations
-- [ ] YouTube
-  - [ ] Chercher des vidéos
-  - [ ] Afficher les résultats
-  - [ ] Intégration du lecteur
-- [ ] Email automatiques récurrents
-  - [ ] Sélectionner fréquence (chaque jour, semaine, etc.)
-  - [ ] Historique des emails envoyés
+**Technologies** :
+- ✅ Android Studio + Kotlin
+- ✅ FloatingActionButton ou Custom View
+- ✅ ContentResolver (accéder aux contacts)
+- ✅ Intent/Deeplink (lancer WhatsApp)
+- ❌ Pas d'emails
+- ❌ Pas d'IA
+- ❌ Pas de YouTube
+- ❌ Pas de backend Node.js
 
-### Phase 5 : App Android Native
-- [ ] Créer projet Android Studio (Kotlin)
-- [ ] Boule flottante par-dessus toutes les apps
-- [ ] Menu dans la boule
-  - [ ] Envoyer email rapide
-  - [ ] Voir messages WhatsApp
-  - [ ] Accès à Gemini
-- [ ] Notifications push
-- [ ] Connexion avec le serveur Node.js
+**Permissions** :
+- `READ_CONTACTS` - Lire les contacts WhatsApp
+- `SYSTEM_ALERT_WINDOW` - Afficher la boule par-dessus toutes les apps
+- `FOREGROUND_SERVICE` - Garder la boule active
+- `QUERY_ALL_PACKAGES` - Vérifier si WhatsApp est installé
 
-### Phase 6 : Design & UX
-- [ ] Mode sombre/clair
-- [ ] Responsive design (mobile, tablet, desktop)
-- [ ] Animations fluides
-- [ ] Couleurs cohérentes (WhatsApp vert, Gemini bleu, etc.)
-- [ ] Feedback utilisateur (toasts, notifications)
-
-### Phase 7 : Sécurité & Performance
-- [ ] Cacher la clé API Resend (variables d'environnement)
-- [ ] Validation côté serveur
-- [ ] HTTPS pour production
-- [ ] Optimiser le chargement de la page
-- [ ] Compresser les images
-
-### Phase 8 : Déploiement
-- [ ] Déployer sur un serveur (Vercel, Heroku, AWS, etc.)
-- [ ] Domaine personnalisé
-- [ ] Publier sur Google Play Store (App Android)
-- [ ] Tests sur vrais téléphones
+**Étapes** :
+- [ ] Installer Android Studio
+- [ ] Créer nouveau projet Kotlin
+- [ ] Implémenter la boule flottante
+- [ ] Récupérer les contacts WhatsApp
+- [ ] Lancer WhatsApp avec Intent
+- [ ] Tester sur téléphone
+- [ ] Publier sur Google Play Store
 
 ---
 
-## 🎯 Objectif Final
+## 🔗 Ressources
 
-**Une app all-in-one** qui :
-- 📧 Envoie des emails rapidement
-- 💬 Gère les messages WhatsApp
-- 🤖 Utilise Gemini AI pour les questions
-- 📺 Cherche des vidéos YouTube
-- 🌙 Accessible partout (web + app Android)
-- 🎨 Design beau et fluide
-- ⚡ Rapide et optimisée
-
----
-
-## 📝 Notes
-
-- **Architecture** : Node.js backend + HTML/CSS/JS frontend + Android app (Kotlin)
-- **APIs** : Resend (emails), Google Gemini, YouTube, WhatsApp (officiel si possible)
-- **Base de données** : À prévoir (Firebase, MongoDB, PostgreSQL)
-- **Priorité** : PWA d'abord, puis App Android
-
----
-
-## 🔗 Ressources Utiles
-
-- [Express.js](https://expressjs.com/)
-- [Resend](https://resend.com/)
-- [Progressive Web Apps](https://web.dev/progressive-web-apps/)
 - [Android Studio](https://developer.android.com/studio)
 - [Kotlin](https://kotlinlang.org/)
-- [Google Gemini API](https://ai.google.dev/)
-- [YouTube Data API](https://developers.google.com/youtube/v3)
+- [FloatingActionButton](https://developer.android.com/reference/android/widget/FloatingActionButton)
+- [Android Intents](https://developer.android.com/guide/components/intents-filters)
+- [ContentResolver](https://developer.android.com/reference/android/content/ContentResolver)
+- [WhatsApp Deeplinks](https://www.whatsapp.com/)
 
 ---
 
 **Mise à jour** : 30 mai 2026  
-**Status** : 🟡 En cours - Phase 1 ✅, Phase 2 en cours
+**Status** : 🔴 À commencer - Phase 1 ✅, Phase 2 prête à démarrer
